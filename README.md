@@ -1,6 +1,7 @@
 Small PoC of Selenium with JUnit interacting with SpreadJS instance in an Angular application
 
 ### Precondition
+_Only for `usingExposedSpreadJSModule()`:_
 App under test must expose SpreadJS module to window context so that it can be visible by automation execution.
 ```Javascript
 import * as GC  from '@mescius/spread-sheets'

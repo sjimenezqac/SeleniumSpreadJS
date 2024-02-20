@@ -1,17 +1,39 @@
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import java.awt.datatransfer.UnsupportedFlavorException;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SpreadJsTest {
+public class InteractWithSpreadJs {
+
 
     @Test
-    void interactWithSpreadJs() throws InterruptedException {
+    void usingCustomSpreadClass() throws InterruptedException, IOException, UnsupportedFlavorException {
+        WebDriver driver = new ChromeDriver();
+        driver.get("http://localhost:4200/quick-start");
+//        driver.get("http://localhost:4200/gc-spread-sheets");
+        Thread.sleep(2000);
+        WebElement canvas = driver.findElement(By.id("vp_vp"));
+        Spread spread = new Spread(driver, canvas);
+        spread.setValue(0,0,"Welcome to SpreadJS-Selenium Demo");
+        spread.setValue(1,0,"Value 1");
+        spread.setValue(2,0,"Value 2");
+        spread.setValue(3,0,"Sum=");
+        spread.setValue(1,1,"2");
+        spread.setValue(2,1,"3");
+        spread.setValue(3,1,"=B2+B3");
+        assertEquals("5",spread.getValue(3,1,true));
+    }
+
+    @Test
+    void usingExposedSpreadJSModule() throws InterruptedException {
 
         WebDriver driver = new ChromeDriver();
         driver.get("http://localhost:4200");
+//        driver.get("http://localhost:4200/gc-spread-sheets");
 //        driver.get("https://developer.mescius.com/spreadjs/demos/sample/features/worksheet/initialize-sheet/purejs/");
 
         int SLEEP_TIME = 1000;
