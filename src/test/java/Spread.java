@@ -62,7 +62,7 @@ public class Spread {
     private ArrayList<String[]> tsvToArrayList(String tsv) throws IOException {
         BufferedReader reader = new BufferedReader(new StringReader(tsv));
         ArrayList<String[]> data = new ArrayList<>();
-        String line = null;
+        String line;
         reader.readLine(); //Remove header
         while((line = reader.readLine()) != null){
             String[] fullRow = line.split("\t",-1);

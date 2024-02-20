@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class InteractWithSpreadJs {
+public class InteractWithSpreadJsTest {
 
 
     @Test
@@ -25,7 +25,9 @@ public class InteractWithSpreadJs {
         spread.setValue(1,1,"2");
         spread.setValue(2,1,"3");
         spread.setValue(3,1,"=B2+B3");
-        assertEquals("5",spread.getValue(3,1,true));
+        String sumValue = spread.getValue(3,1, true);
+        System.out.println("Sum value is: " + sumValue);
+        assertEquals("5",sumValue);
     }
 
     @Test
